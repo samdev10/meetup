@@ -1,0 +1,51 @@
+California,33871648,CA
+Texas,20851820,TX
+New York,18976457,NY
+Florida,15982378,FL
+Illinois,12419293,IL
+Pennsylvania,12281054,PA
+Ohio,11353140,OH
+Michigan,9938444,MI
+New Jersey,8414350,NJ
+Georgia,8186453,GA
+North Carolina,8049313,NC
+Virginia,7078515,VA
+Massachusetts,6349097,MA
+Indiana,6080485,IN
+Washington,5894121,WA
+Tennessee,5689283,TN
+Missouri,5595211,MO
+Wisconsin,5363675,WI
+Maryland,5296486,MD
+Arizona,5130632,AZ
+Minnesota,4919479,MN
+Louisiana,4468976,LA
+Alabama,4447100,AL
+Colorado,4301261,CO
+Kentucky,4041769,KY
+South Carolina,4012012,SC
+Oklahoma,3450654,OK
+Oregon,3421399,OR
+Connecticut,3405565,CT
+Iowa,2926324,IA
+Mississippi,2844658,MS
+Kansas,2688418,KS
+Arkansas,2673400,AR
+Utah,2233169,UT
+Nevada,1998257,NV
+New Mexico,1819046,NM
+West Virginia,1808344,WV
+Nebraska,1711263,NE
+Idaho,1293953,ID
+Maine,1274923,ME
+New Hampshire,1235786,NH
+Hawaii,1211537,HI
+Rhode Island,1048319,RI
+Montana,902195,MT
+Delaware,783600,DE
+South Dakota,754844,SD
+North Dakota,642200,ND
+Alaska,626932,AK
+Vermont,608827,VT
+Washington D.C.,572059,DC
+Wyoming,493782,WY
