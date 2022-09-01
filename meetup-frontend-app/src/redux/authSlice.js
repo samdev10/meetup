@@ -6,7 +6,7 @@ export const authSlice = createSlice({
   initialState: {
     authenticated: false,
     user: undefined,
-    email: ''
+    email: 'santhoshn1099@gmail.com'
   },
   reducers: {
     authenticateUser: (state, action) => {
