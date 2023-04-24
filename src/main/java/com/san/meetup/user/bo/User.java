@@ -54,8 +54,8 @@ public class User implements Serializable{
     @Column(name = "email")
 	private String email;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @Default
-    @JsonBackReference
-	private Set<UserAndGroup> userGroupMappings = new HashSet<>();
+    @JsonManagedReference
+    private Set<UserAndGroup> userGroupMappings = new HashSet<>();
 }
