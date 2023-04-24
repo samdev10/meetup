@@ -15,7 +15,8 @@ export const authSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.authenticated = true;
-      state.user = action.payload.user;
+      //state.user = action.payload.user;
+      state.user = { email: 'santhoshn1099@gmail.com', firstname: 'santosh', lastname: 'n', id: 1};
     },
     addEmail: (state, action) => {
       state.email = action.payload.email;

@@ -7,6 +7,10 @@ run : npm run start
 link : https://getbootstrap.com/docs/5.2/examples/blog/
 
 ### Mysql
+
+## Local:
+mysql.server start
+
 ##Basic Tables:
 
 CREATE TABLE `user` (

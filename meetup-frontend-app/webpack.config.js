@@ -19,7 +19,19 @@ module.exports = {
     hot: true,
     open: true,
     proxy: {
-      "/api/": {
+      "/login": {
+        target: "http://localhost:3000",
+        router: () => 'http://localhost:8080',
+      },
+      "/api/group/": {
+        target: "http://localhost:3000",
+        router: () => 'http://localhost:8080',
+      },
+      "/api/events": {
+        target: "http://localhost:3000",
+        router: () => 'http://localhost:8080',
+      },
+      "/api/event": {
         target: "http://localhost:3000",
         router: () => 'http://localhost:8080',
       }

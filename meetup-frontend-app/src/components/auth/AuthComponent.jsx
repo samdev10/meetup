@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {postData} from '../../FetchApi.js'
+import {postDataWithFetch} from '../../FetchApi.js'
 import { useSelector, useDispatch } from 'react-redux'
 import { authenticateUser, addEmail } from '../../redux/authSlice.js'
 
@@ -17,8 +17,13 @@ export function AuthComponent () {
   }
 
   const identifyUser = async function identifyUser(email) {
-      const data = await postData('/api/auth/user', email);
-      dispatch(authenticateUser({user: data.user}))
+    postDataWithFetch('/login', {email: email, username: email, password: ''}, {username : email})
+    .then((response) => {
+        dispatch(authenticateUser())
+      }).catch(err => {
+        console.error(err);
+        throw new Error(err);
+    });;
   };
 
   return (

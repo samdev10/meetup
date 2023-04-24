@@ -2,18 +2,27 @@ import React from 'react';
 import Home from './home/Home.jsx';
 import About from './about/About.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import EventsContainer from './events/EventsContainer.jsx';
+import GroupContainer from './group/GroupContainer.jsx';
+import AuthComponent from './auth/AuthComponent.jsx';
 
 function AppContainer() {
 
   return (
     <Routes>
-      <Route path='/' element={<Home/>} exact>
-      </Route>
-      <Route path='about' element={<About/>} exact/>
+      <Route path='/login' element={AuthComponent} />
+      <Route path='/' element={<Home/>}>
+        <Route index element={<GroupContainer />} />
+        <Route path='groups' element={<GroupContainer/>}></Route>
+        <Route path='events/:groupId' element={<EventsContainer/>}></Route>
+        <Route path='about' element={<About/>}/>
       {/*
       Use it as :
-              <Link className='btn btn-primary' to="/about">About</Link>
-      */}
+      Render current router url
+      <outlet>
+      Add link:
+      <Link className='btn btn-primary' to="/about">About</Link>
+    */}
       <Route
       path="*"
       element={
@@ -21,7 +30,8 @@ function AppContainer() {
           <p>There's nothing here!</p>
         </main>
       }
-    />
+      />
+      </Route>
     </Routes>
     )
 }
