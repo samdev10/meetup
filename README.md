@@ -6,6 +6,10 @@ run : npm run start
 ### CSS template
 link : https://getbootstrap.com/docs/5.2/examples/blog/
 
+### Spring Jpa
+- @JsonManagedReference is the forward part of reference, the one that gets serialized normally.
+- @JsonBackReference is the back part of reference; it'll be omitted from serialization.
+
 ### Mysql
 
 ## Local:

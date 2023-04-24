@@ -74,5 +74,4 @@ public class Event implements Serializable {
 	@JoinColumn(name = "group_id", nullable = false)
 	@JsonManagedReference
 	private Group group;
-
 }

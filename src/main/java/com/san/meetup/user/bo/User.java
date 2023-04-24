@@ -32,30 +32,30 @@ import lombok.experimental.Accessors;
 
 @Getter
 @Setter
-@Accessors(chain=true)
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "MU_USER")
 @EqualsAndHashCode
 @Builder
-public class User implements Serializable{
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
-    private Long id;
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Exclude
+	private Long id;
 
-    @Column(name = "first_name")
-    private String firstname;
+	@Column(name = "first_name")
+	private String firstname;
 
-    @Column(name = "last_name")
-    private String lastname;
+	@Column(name = "last_name")
+	private String lastname;
 
-    @Column(name = "email")
+	@Column(name = "email")
 	private String email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @Default
-    @JsonManagedReference
-    private Set<UserAndGroup> userGroupMappings = new HashSet<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@Default
+	@JsonManagedReference
+	private Set<UserAndGroup> userGroupMappings = new HashSet<>();
 }

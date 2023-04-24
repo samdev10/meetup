@@ -34,32 +34,32 @@ import lombok.experimental.Accessors;
 
 @Getter
 @Setter
-@Accessors(chain=true)
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "MU_GROUP")
 @Builder
 @EqualsAndHashCode
 public class Group implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
-    private Long id;
-    
-    @Column(name = "name")
-    private String name;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Exclude
+	private Long id;
 
-    @Column(name = "description")
-    private String description;
-    
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    @Default
-    @JsonBackReference
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "description")
+	private String description;
+
+	@OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+	@Default
+	@JsonBackReference
 	private Set<UserAndGroup> userGroupMappings = new HashSet<>();
-    
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    @Default
-    @JsonBackReference
+
+	@OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+	@Default
+	@JsonBackReference
 	private Set<Event> events = new HashSet<>();
 }
