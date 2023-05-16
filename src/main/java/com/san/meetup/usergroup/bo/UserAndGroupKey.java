@@ -4,22 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
-@Getter
-@Setter
-@Accessors(chain=true)
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Embeddable
+@Data
+@Builder
 public class UserAndGroupKey implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -19,10 +19,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.san.meetup.events.bo.Event;
+import com.san.meetup.group.bo.Group;
 import com.san.meetup.usergroup.bo.UserAndGroup;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Builder.Default;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,13 +33,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-@Getter
-@Setter
-@Accessors(chain = true)
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "MU_USER")
-@EqualsAndHashCode
 @Builder
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -54,8 +54,8 @@ public class User implements Serializable {
 	@Column(name = "email")
 	private String email;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@Default
-	@JsonManagedReference
+	@JsonBackReference
 	private Set<UserAndGroup> userGroupMappings = new HashSet<>();
 }

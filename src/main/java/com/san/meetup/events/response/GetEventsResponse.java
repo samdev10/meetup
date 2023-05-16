@@ -13,5 +13,6 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class GetEventsResponse {
+	@Builder.Default
 	private List<Event> events = new ArrayList<>();
 }
