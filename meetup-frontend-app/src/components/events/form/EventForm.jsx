@@ -15,6 +15,14 @@ const EventForm = function EventForm(props) {
         <label htmlFor="description">Description</label>
         <Field name="description" component="input" type="text" />
       </div>
+      <div>
+        <label htmlFor="date">Date</label>
+        <Field name="date" component="input" type="date"></Field>
+      </div>
+      <div>
+        <label htmlFor="time">Time</label>
+        <Field name="time" component="input" type="time"></Field>
+      </div>
       <button type="submit">Submit</button>
     </form>
   );
