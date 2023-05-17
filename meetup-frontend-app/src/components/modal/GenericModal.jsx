@@ -26,7 +26,7 @@ export default function GenericModal(props) {
 
       <Modal id={props.name} show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Create</Modal.Title>
+          <Modal.Title>{props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {props.children}

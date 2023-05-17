@@ -38,7 +38,7 @@ export default function EventsContainer() {
                 <div className="col-4 text-center">
                 </div>
                 <div className="col-4 d-flex justify-content-end align-items-center">
-                    <GenericModal name="eventModal">
+                    <GenericModal name="eventModal" title="Create Event">
                         <EventForm onSubmit={(values) => handleSubmit(values)}/>
                     </GenericModal>
                 </div>

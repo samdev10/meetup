@@ -41,7 +41,7 @@ function GroupContainer() {
                 <div className="col-4 text-center">
                 </div>
                 <div className="col-4 d-flex justify-content-end align-items-center">
-                    <GenericModal name="groupModal">
+                    <GenericModal name="groupModal" title="Create Group">
                         <GroupForm onSubmit={(values) => handleSubmit(values)}/>
                     </GenericModal>
                 </div>
