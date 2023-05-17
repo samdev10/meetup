@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 
 @Embeddable
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UserAndGroupKey implements Serializable {
     private static final long serialVersionUID = 1L;

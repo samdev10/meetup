@@ -40,7 +40,6 @@ public class Group {
 	private String name;
 
 	@Column(name = "description")
-	@NotBlank
 	private String description;
 
 	@OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
