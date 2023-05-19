@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.san.meetup.group.bo.Group;
 
@@ -28,36 +29,31 @@ import lombok.NoArgsConstructor;
 @Entity(name = "MU_EVENTS")
 @Builder
 public class Event {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "name")
-    @NotBlank
-    private String name;
+	@Column(name = "name")
+	@NotBlank
+	private String name;
 
-    @Column(name = "description")
-    @NotBlank
-    private String description;
+	@Column(name = "description")
+	@NotBlank
+	private String description;
 
-    @Column(name = "date_from")
-    private Date dateFrom;
+	@Column(name = "date_from")
+	private Date dateFrom;
 
-    @Column(name = "date_to")
-    private Date dateTo;
+	@Column(name = "date_to")
+	private Date dateTo;
 
-    @Column(name = "time_from")
-    private String timeFrom;
+	@Column(name = "time_from")
+	private String timeFrom;
 
-    @Column(name = "time_to")
-    private String timeTo;
+	@Column(name = "time_to")
+	private String timeTo;
 	
-    @Column(name = "group_id", insertable = false, updatable = false)
-	private Long groupId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id", nullable = false)
-    @JsonBackReference
-    private Group group;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "group_id", nullable = false)
+	private Group group;
 }

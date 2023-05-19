@@ -1,6 +1,7 @@
 package com.san.meetup.group.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,8 +38,12 @@ public class GroupService implements GroupApi {
 
 		return persistedGroup;
 	}
-	
+
 	public List<Group> getGroups(Long userId) {
-		return groupRepo.findByUserGroupMappingsUserId(userId);
+		User user = userRepo.findById(userId).get();
+		List<UserAndGroup> userGroups = userAndGroupRepo.findByUser(user);
+
+		return userGroups.stream().map(ug -> groupRepo.findById(ug.getId().getGroupId()).get())
+				.collect(Collectors.toList());
 	}
 }

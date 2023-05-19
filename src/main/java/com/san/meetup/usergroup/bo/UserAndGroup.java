@@ -40,6 +40,5 @@ public class UserAndGroup {
 	@MapsId("groupId")
 	@JoinColumn(name = "group_id")
 	@JsonIgnore
-	// bidirectional-relationships-and-infinite-recursion
 	private Group group;
 }

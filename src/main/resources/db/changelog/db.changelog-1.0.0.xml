@@ -1,0 +1,131 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+	<changeSet id="createTable-MU_USER" author="snalla">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="MU_USER" />
+			</not>
+		</preConditions>
+		<createTable tableName="MU_USER">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="PK_MU_USER" />
+			</column>
+			<column name="email" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="first_name" type="varchar(100)" />
+			<column name="last_name" type="varchar(100)" />
+			<column name="age" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="gender" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="createTable-MU_GROUP" author="snalla">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="MU_GROUP" />
+			</not>
+		</preConditions>
+		<createTable tableName="MU_GROUP">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="PK_MU_GROUP" />
+			</column>
+			<column name="name" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="description" type="varchar(100)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="createTable-MU_USER_GROUP" author="snalla">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="MU_USER_GROUP" />
+			</not>
+		</preConditions>
+		<createTable tableName="MU_USER_GROUP">
+			<column name="user_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="group_id" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addPrimaryKey columnNames="user_id, group_id"
+			constraintName="PK_MU_USER_GROUP" tableName="MU_USER_GROUP" />
+		<addForeignKeyConstraint
+			baseTableName="MU_USER_GROUP" baseColumnNames="group_id"
+			referencedTableName="MU_GROUP" referencedColumnNames="id"
+			constraintName="FK_user_group_group_fk" />
+		<addForeignKeyConstraint
+			baseTableName="MU_USER_GROUP" baseColumnNames="user_id"
+			referencedTableName="MU_USER" referencedColumnNames="id"
+			constraintName="FK_user_group_user_fk" />
+		<createIndex tableName="MU_USER_GROUP"
+			indexName="user_group_user_fk">
+			<column name="user_id" />
+		</createIndex>
+		<createIndex tableName="MU_USER_GROUP"
+			indexName="user_group_group_fk">
+			<column name="group_id" />
+		</createIndex>
+	</changeSet>
+
+	<changeSet id="createTable-MU_EVENTS" author="snalla">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="MU_EVENTS" />
+			</not>
+		</preConditions>
+		<createTable tableName="MU_EVENTS">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="PK_MU_EVENTS" />
+			</column>
+			<column name="name" type="varchar(100)" defaultValue="">
+				<constraints nullable="false" />
+			</column>
+			<column name="description" type="varchar(100)" />
+			<column name="notes" type="varchar(100)" />
+			<column name="date_from" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="time_from" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="date_to" type="date">
+				<constraints nullable="false" />
+			</column>
+			<column name="time_to" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="address1" type="varchar(100)" />
+			<column name="address2" type="varchar(100)" />
+			<column name="city" type="varchar(100)" />
+			<column name="state" type="varchar(100)" />
+			<column name="zipcode" type="varchar(100)" />
+			<column name="online_meeting_details" type="varchar(100)" />
+			<column name="group_id" type="bigint" >
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<addForeignKeyConstraint
+			baseTableName="MU_EVENTS" baseColumnNames="group_id"
+			referencedTableName="MU_GROUP" referencedColumnNames="id"
+			constraintName="FK_MU_EVENTS_group_id" />
+		<createIndex tableName="MU_EVENTS"
+			indexName="events_group_fk">
+			<column name="group_id" />
+		</createIndex>
+	</changeSet>
+</databaseChangeLog>

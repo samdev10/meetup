@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.san.meetup.events.bo.Event;
 import com.san.meetup.usergroup.bo.UserAndGroup;
@@ -32,7 +33,6 @@ import lombok.NoArgsConstructor;
 public class Group {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@EqualsAndHashCode.Exclude
 	private Long id;
 
 	@Column(name = "name")
@@ -41,14 +41,4 @@ public class Group {
 
 	@Column(name = "description")
 	private String description;
-
-	@OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Builder.Default
-	@JsonBackReference
-	private Set<UserAndGroup> userGroupMappings = new HashSet<>();
-
-	@OneToMany(mappedBy = "group", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@Builder.Default
-	@JsonBackReference
-	private Set<Event> event = new HashSet<>();
 }

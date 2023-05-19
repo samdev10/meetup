@@ -35,6 +35,7 @@ public class EventServiceImpl implements EventApi {
 	}
 	
 	public List<Event> getEvents(Long groupId) {
-		return eventRepo.findByGroupId(groupId);
+		Group group = groupRepo.findById(groupId).get();
+		return eventRepo.findByGroup(group);
 	}
 }
