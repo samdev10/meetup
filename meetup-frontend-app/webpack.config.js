@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "/dist"), // the bundle output path
     filename: "bundle.js", // the name of the bundle
+    publicPath: "/", // required for font loading on historyApiFallback
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -17,8 +18,9 @@ module.exports = {
   devServer: {
     port: 3000,
     hot: true,
-    open: true,
-    proxy: {
+    open: true, 
+    historyApiFallback: true,
+      proxy: {
       "/login": {
         target: "http://localhost:3000",
         router: () => 'http://localhost:8080',

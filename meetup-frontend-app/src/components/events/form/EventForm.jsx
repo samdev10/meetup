@@ -8,20 +8,28 @@ const EventForm = function EventForm(props) {
   return (
     <form name="event" onSubmit={props.handleSubmit}>
       <div>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Name : </label>
         <Field name="name" component="input" type="text" />
       </div>
       <div>
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description">Description : </label>
         <Field name="description" component="input" type="text" />
       </div>
       <div>
-        <label htmlFor="date">Date</label>
-        <Field name="date" component="input" type="date"></Field>
+        <label htmlFor="dateFrom">Date From : </label>
+        <Field name="dateFrom" component="input" type="date" defaultValue={new Date()}></Field>
       </div>
       <div>
-        <label htmlFor="time">Time</label>
-        <Field name="time" component="input" type="time"></Field>
+        <label htmlFor="timeFrom">Time From : </label>
+        <Field name="timeFrom" component="input" type="time"></Field>
+      </div>
+      <div>
+        <label htmlFor="dateTo">Date To : </label>
+        <Field name="dateTo" component="input" type="date"></Field>
+      </div>
+      <div>
+        <label htmlFor="timeTo">Time To : </label>
+        <Field name="timeTo" component="input" type="time"></Field>
       </div>
       <button type="submit">Submit</button>
     </form>

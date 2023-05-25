@@ -13,8 +13,6 @@ function AppContainer() {
       <Route path='/login' element={AuthComponent} />
       <Route path='/' element={<Home/>}>
         <Route index element={<GroupContainer />} />
-        <Route path='groups' element={<GroupContainer/>}></Route>
-        <Route path='events/:groupId' element={<EventsContainer/>}></Route>
         <Route path='about' element={<About/>}/>
       {/*
       Use it as :
@@ -32,6 +30,7 @@ function AppContainer() {
       }
       />
       </Route>
+      <Route path='/events/:groupId' element={<EventsContainer/>}></Route>
     </Routes>
     )
 }

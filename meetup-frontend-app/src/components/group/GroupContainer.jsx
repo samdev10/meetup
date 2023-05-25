@@ -8,8 +8,10 @@ import { addGroups } from "../../redux/groupSlice.js";
 import { Link } from "react-router-dom";
 import GroupForm from "./form/GroupForm.jsx";
 import { postData } from "../../FetchApi.js";
+import { closeModal, showModal } from "../../redux/genericModalSlice.js";
 
 function GroupContainer() {
+    const state = useSelector((state) => state);
     const user = useSelector((state) => state.auth.user);
     const groups = useSelector((state) => state.group.groups);
     const userId = useSelector((state) => state.auth.user.id);
@@ -29,7 +31,7 @@ function GroupContainer() {
     const handleSubmit = (values) => {
         // pass it from props
         postData("/api/group/create", { ...values, userId: userId });
-        dispatchEvent(state, { type: "GROUP_SAVE_SUCCESS" });
+        dispatch(closeModal());
       };
 
     return (
