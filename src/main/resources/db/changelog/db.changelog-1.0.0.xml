@@ -41,7 +41,7 @@
 					primaryKeyName="PK_MU_GROUP" />
 			</column>
 			<column name="name" type="varchar(100)">
-				<constraints nullable="false" />
+				<constraints nullable="false" unique="true" />
 			</column>
 			<column name="description" type="varchar(100)" />
 		</createTable>
@@ -92,21 +92,15 @@
 				<constraints primaryKey="true" nullable="false"
 					primaryKeyName="PK_MU_EVENTS" />
 			</column>
-			<column name="name" type="varchar(100)" defaultValue="">
-				<constraints nullable="false" />
+			<column name="name" type="varchar(100)">
+				<constraints nullable="false" unique="true"/>
 			</column>
 			<column name="description" type="varchar(100)" />
 			<column name="notes" type="varchar(100)" />
-			<column name="date_from" type="date">
+			<column name="event_start_time" type="DATETIME">
 				<constraints nullable="false" />
 			</column>
-			<column name="time_from" type="varchar(100)">
-				<constraints nullable="false" />
-			</column>
-			<column name="date_to" type="date">
-				<constraints nullable="false" />
-			</column>
-			<column name="time_to" type="varchar(100)">
+			<column name="event_end_time" type="DATETIME">
 				<constraints nullable="false" />
 			</column>
 			<column name="address1" type="varchar(100)" />

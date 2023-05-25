@@ -1,5 +1,6 @@
 package com.san.meetup.events.bo;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -33,7 +34,7 @@ public class Event {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", unique = true)
 	@NotBlank
 	private String name;
 
@@ -41,18 +42,12 @@ public class Event {
 	@NotBlank
 	private String description;
 
-	@Column(name = "date_from")
-	private Date dateFrom;
+	@Column(name = "event_start_time")
+	private LocalDateTime eventStartTime;
 
-	@Column(name = "date_to")
-	private Date dateTo;
+	@Column(name = "event_end_time")
+	private LocalDateTime eventEndTime;
 
-	@Column(name = "time_from")
-	private String timeFrom;
-
-	@Column(name = "time_to")
-	private String timeTo;
-	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "group_id", nullable = false)
 	private Group group;

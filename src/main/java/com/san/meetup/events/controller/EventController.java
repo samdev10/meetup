@@ -1,5 +1,8 @@
 package com.san.meetup.events.controller;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +25,16 @@ public class EventController {
 
 	@PostMapping(value = "/api/event/create", produces = "application/json")
 	ResponseEntity<CreateEventResponse> create(@RequestBody CreateEventRequest request) {
-		final Event event = Event.builder().name(request.getName()).description(request.getDescription()).build();
+		final Event event = Event.builder().name(request.getName()).description(request.getDescription())
+				.eventStartTime(toUtc(request.getEventStartTime())).eventEndTime(toUtc(request.getEventEndTime()))
+				.build();
 		CreateEventResponse response = CreateEventResponse.builder()
 				.event(eventService.saveEvent(event, (Long) request.getGroupId())).build();
 		return new ResponseEntity<CreateEventResponse>(response, HttpStatus.OK);
+	}
+
+	private LocalDateTime toUtc(String time) {
+		return LocalDateTime.parse(time).atOffset(ZoneOffset.UTC).toLocalDateTime();
 	}
 
 	@GetMapping(value = "/api/events")

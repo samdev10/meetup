@@ -1,5 +1,6 @@
 package com.san.meetup.events.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,10 +25,8 @@ public class EventServiceImpl implements EventApi {
 	public Event saveEvent(Event event, Long groupId) {
 		Group group = groupRepo.findById(groupId).get();
 		event.setGroup(group);
-		event.setDateFrom(new Date());
-		event.setDateTo(new Date());
-		event.setTimeFrom("timeFrom");
-		event.setTimeTo("timeTo");
+		event.setEventStartTime(event.getEventStartTime());
+		event.setEventEndTime(event.getEventEndTime());
 
 		Event persistedEvent = eventRepo.saveAndFlush(event);
 
