@@ -1,21 +1,29 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { useSelector } from "react-redux";
 
 const GroupForm = function GroupForm(props) {
-  const state = useSelector((state) => state);
 
   return (
     <form name="group" onSubmit={props.handleSubmit}>
-      <div>
+      <div className="form-group">
         <label htmlFor="name">Name</label>
-        <Field name="name" component="input" type="text" />
+        <Field
+          className="form-control"
+          name="name"
+          component="input"
+          type="text"
+        />
       </div>
-      <div>
+      <div className="form-group">
         <label htmlFor="description">Description</label>
-        <Field name="description" component="input" type="text" />
+        <Field
+          className="form-control"
+          name="description"
+          component="input"
+          type="text"
+        />
       </div>
-      <button type="submit">Submit</button>
+      <button className="btn btn-primary" type="submit">Submit</button>
     </form>
   );
 };

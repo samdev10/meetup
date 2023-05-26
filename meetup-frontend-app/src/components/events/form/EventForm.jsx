@@ -1,37 +1,46 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { useSelector } from "react-redux";
 
 const EventForm = function EventForm(props) {
-  const state = useSelector((state) => state);
-
   return (
     <form name="event" onSubmit={props.handleSubmit}>
-      <div>
-        <label htmlFor="name">Name : </label>
-        <Field name="name" component="input" type="text" />
+      <div className="form-group">
+        <label htmlFor="name">Event Name</label>
+        <Field
+          className="form-control"
+          name="name"
+          component="input"
+          type="text"
+        />
       </div>
-      <div>
-        <label htmlFor="description">Description : </label>
-        <Field name="description" component="input" type="text" />
+      <div className="form-group">
+        <label htmlFor="description">Description</label>
+        <Field
+          className="form-control"
+          name="description"
+          component="input"
+          type="text"
+        />
       </div>
-      <div>
-        <label htmlFor="dateFrom">Date From : </label>
-        <Field name="dateFrom" component="input" type="date" defaultValue={new Date()}></Field>
+      <div className="form-group">
+        <label htmlFor="startTime">Start Time</label>
+        <Field
+          className="form-control"
+          name="eventStartTime"
+          component="input"
+          type="datetime-local"
+        ></Field>
       </div>
-      <div>
-        <label htmlFor="timeFrom">Time From : </label>
-        <Field name="timeFrom" component="input" type="time"></Field>
+      <div className="form-group">
+        <label htmlFor="endTime">End Time</label>
+        <Field
+          className="form-control"
+          name="eventEndTime"
+          component="input"
+          type="datetime-local"
+        ></Field>
       </div>
-      <div>
-        <label htmlFor="dateTo">Date To : </label>
-        <Field name="dateTo" component="input" type="date"></Field>
-      </div>
-      <div>
-        <label htmlFor="timeTo">Time To : </label>
-        <Field name="timeTo" component="input" type="time"></Field>
-      </div>
-      <button type="submit">Submit</button>
+      <button className="btn btn-primary" type="submit">Submit</button>
     </form>
   );
 };

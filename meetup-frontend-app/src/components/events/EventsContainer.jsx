@@ -17,6 +17,9 @@ export default function EventsContainer() {
 
   const handleSubmit = (values) => {
     // pass it from props
+    let {eventStartTime, eventEndTime} = values;
+    eventStartTime = new Date(eventStartTime).toISOString();
+    eventEndTime = new Date(eventEndTime).toISOString();
     postData("/api/event/create", { ...values, groupId: groupId });
   };
 
