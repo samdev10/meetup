@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getData, postData } from "../../FetchApi";
@@ -6,16 +6,14 @@ import { addEvents } from "../../redux/eventSlice";
 import EventForm from "./form/EventForm.jsx";
 import GenericModal from "../modal/GenericModal.jsx";
 import { closeModal, showModal } from "../../redux/genericModalSlice.js";
-import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 export default function EventsContainer() {
   const user = useSelector((state) => state.auth.user);
   const events = useSelector((state) => state.event.events);
+  const [enableDialogue, setEnableDialogue] = useState(false);
   const dispatch = useDispatch();
   const { groupId } = useParams();
-  console.log("groupId", groupId);
-
-  const navigate = useNavigate();
 
   const handleSubmit = (values) => {
     // pass it from props
@@ -33,6 +31,12 @@ export default function EventsContainer() {
     fetchEvents();
   }, []);
 
+  const onClickModal = (e) => {
+    e.preventDefault();
+    setEnableDialogue(true);
+    dispatch(showModal());
+  };
+
   return (
     <div className="container">
       <header className="blog-header lh-1 py-3">
@@ -40,9 +44,19 @@ export default function EventsContainer() {
           <div className="col-4 pt-1"></div>
           <div className="col-4 text-center"></div>
           <div className="col-4 d-flex justify-content-end align-items-center">
-            <GenericModal name="eventModal" title="Create Event">
-              <EventForm onSubmit={(values) => handleSubmit(values)} />
-            </GenericModal>
+            <Button
+              variant="secoundary"
+              className="btn btn-sm btn-outline-secondary"
+              onClick={(e) => onClickModal(e)}
+              target={"eventModal"}
+            >
+              Create
+            </Button>
+            {enableDialogue ? (
+              <GenericModal name="eventModal" title="Create Event">
+                <EventForm onSubmit={(values) => handleSubmit(values)} />
+              </GenericModal>
+            ) : null}
           </div>
         </div>
       </header>

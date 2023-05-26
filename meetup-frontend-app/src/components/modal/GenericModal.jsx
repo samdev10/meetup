@@ -10,26 +10,12 @@ export default function GenericModal(props) {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const onClickModal = (e) => {
-    e.preventDefault();
-    dispatch(showModal());
-  };
-
   const onHideModal = () => {
     dispatch(closeModal());
   }
 
   return (
     <>
-      <Button
-        variant="secoundary"
-        className="btn btn-sm btn-outline-secondary"
-        onClick={(e) => onClickModal(e)}
-        target={props.name}
-      >
-        Create
-      </Button>
-
       <Modal id={props.name} show={show} onHide={onHideModal}>
         <Modal.Header closeButton>
           <Modal.Title>{props.title}</Modal.Title>
