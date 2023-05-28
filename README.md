@@ -15,6 +15,11 @@ link : https://getbootstrap.com/docs/5.2/examples/blog/
 ## Local:
 mysql.server start
 
+### Jwt
+https://github.com/only2dhir/spring-boot-jwt/blob/master/src/main/java/com/devglan/config/JwtTokenUtil.java
+## Spring Security
+https://github.com/eugenp/tutorials/blob/master/spring-security-modules/spring-security-web-boot-4/src/main/java/com/baeldung/enablemethodsecurity/configuration/SecurityConfig.java
+
 ##Basic Tables:
 
 CREATE TABLE `user` (
