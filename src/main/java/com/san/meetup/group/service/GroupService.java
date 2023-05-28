@@ -38,9 +38,30 @@ public class GroupService implements GroupApi {
 
 		return persistedGroup;
 	}
+	
+	@Override
+	public Group saveGroup(Group group, String email) {
+		User user = userRepo.findUserByEmail(email).get();
+		Group persistedGroup = groupRepo.saveAndFlush(group);
+
+		UserAndGroup userAndGroup = UserAndGroup.builder()
+				.id(UserAndGroupKey.builder().userId(user.getId()).groupId(persistedGroup.getId()).build()).user(user)
+				.group(persistedGroup).build();
+		userAndGroupRepo.save(userAndGroup);
+
+		return persistedGroup;
+	}
 
 	public List<Group> getGroups(Long userId) {
 		User user = userRepo.findById(userId).get();
+		List<UserAndGroup> userGroups = userAndGroupRepo.findByUser(user);
+
+		return userGroups.stream().map(ug -> groupRepo.findById(ug.getId().getGroupId()).get())
+				.collect(Collectors.toList());
+	}
+	
+	public List<Group> getGroups(String email) {
+		User user = userRepo.findUserByEmail(email).get();
 		List<UserAndGroup> userGroups = userAndGroupRepo.findByUser(user);
 
 		return userGroups.stream().map(ug -> groupRepo.findById(ug.getId().getGroupId()).get())

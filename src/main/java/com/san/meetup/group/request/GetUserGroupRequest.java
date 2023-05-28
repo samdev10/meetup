@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GetUserGroupRequest {
 	private Long userId;
+	private String email;
 }

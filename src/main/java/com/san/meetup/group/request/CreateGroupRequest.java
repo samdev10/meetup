@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateGroupRequest {
 	private Long userId;
+	private String email;
 	private String name;
 	private String description;
 }

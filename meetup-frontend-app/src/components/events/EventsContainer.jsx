@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getData, postData } from "../../FetchApi";
-import { addEvents } from "../../redux/eventSlice";
+import { addEvents, addEvent } from "../../redux/eventSlice";
 import EventForm from "./form/EventForm.jsx";
 import GenericModal from "../modal/GenericModal.jsx";
 import { closeModal, showModal } from "../../redux/genericModalSlice.js";
@@ -15,19 +15,20 @@ export default function EventsContainer() {
   const dispatch = useDispatch();
   const { groupId } = useParams();
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     // pass it from props
     let {eventStartTime, eventEndTime} = values;
     eventStartTime = new Date(eventStartTime).toISOString();
     eventEndTime = new Date(eventEndTime).toISOString();
-    postData("/api/event/create", { ...values, groupId: groupId });
+    let data = await postData("/api/event/create", { ...values, groupId: groupId });
+    dispatch(addEvent({ event: data.event }));
+    dispatch(closeModal());
   };
 
   const fetchEvents = async () => {
     let params = { groupId: groupId };
-    let data = await getData("/api/events", params);
+    let data = await getData("/api/events",{}, params);
     dispatch(addEvents({ events: data.events }));
-    dispatch(closeModal());
   };
 
   useEffect(() => {

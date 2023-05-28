@@ -25,15 +25,11 @@ module.exports = {
         target: "http://localhost:3000",
         router: () => 'http://localhost:8080',
       },
-      "/api/group/": {
+      "/logout": {
         target: "http://localhost:3000",
         router: () => 'http://localhost:8080',
       },
-      "/api/events": {
-        target: "http://localhost:3000",
-        router: () => 'http://localhost:8080',
-      },
-      "/api/event": {
+      "/api/": {
         target: "http://localhost:3000",
         router: () => 'http://localhost:8080',
       }

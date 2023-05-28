@@ -10,4 +10,8 @@ public interface GroupApi {
 
 	List<Group> getGroups(Long userId);
 
+	List<Group> getGroups(String email);
+
+	Group saveGroup(Group group, String email);
+
 }

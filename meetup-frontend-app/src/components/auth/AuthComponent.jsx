@@ -17,9 +17,11 @@ export function AuthComponent () {
   }
 
   const identifyUser = async function identifyUser(email) {
-    postDataWithFetch('/login', {email: email, username: email, password: ''}, {username : email})
-    .then((response) => {
-        dispatch(authenticateUser())
+    postDataWithFetch('/login', {email: email, username: email, password: ''})
+    .then((response) => response.json())
+    .then((authToken) => {
+      console.log(authToken);
+        dispatch(authenticateUser(authToken))
       }).catch(err => {
         console.error(err);
         throw new Error(err);

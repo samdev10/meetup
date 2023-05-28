@@ -6,7 +6,7 @@ export const authSlice = createSlice({
   initialState: {
     authenticated: false,
     user: undefined,
-    email: 'santhoshn1099@gmail.com'
+    email: 'santhoshn1099@gmail.com',
   },
   reducers: {
     authenticateUser: (state, action) => {
@@ -14,9 +14,17 @@ export const authSlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
+      const res = action.payload;
       state.authenticated = true;
-      //state.user = action.payload.user;
-      state.user = { email: 'santhoshn1099@gmail.com', firstname: 'santosh', lastname: 'n', id: 1};
+      state.user = { email: res.username, firstname: undefined, lastname: undefined, id: undefined };
+      state.email = res.username;
+      console.log(res);
+
+      //get token from response
+      const token  =  res.token;
+
+      //set JWT token to local
+       localStorage.setItem("token", token);
     },
     addEmail: (state, action) => {
       state.email = action.payload.email;

@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import GenericModal from "../modal/GenericModal.jsx";
 import Button from "react-bootstrap/Button";
-import "bootstrap/dist/js/bootstrap.js";
-import "bootstrap/dist/css/bootstrap.css";
-import { getData } from "../../FetchApi.js";
-import { addGroups } from "../../redux/groupSlice.js";
+import { addGroups, addGroup } from "../../redux/groupSlice.js";
 import { Link } from "react-router-dom";
 import GroupForm from "./form/GroupForm.jsx";
 import { postData } from "../../FetchApi.js";
@@ -16,13 +13,13 @@ function GroupContainer() {
   const user = useSelector((state) => state.auth.user);
   const groups = useSelector((state) => state.group.groups);
   const userId = useSelector((state) => state.auth.user.id);
+  const email = useSelector((state) => state.auth.user.email);
   const [enableDialogue, setEnableDialogue] = useState(false);
   const dispatch = useDispatch();
 
   const fetchGroups = async () => {
-    let params = { userId: user.id };
-    let data = await getData("/api/group/userGroups", params);
-    console.log("group data", data);
+    let body = { userId: user.id, email: user.email };
+    let data = await postData("/api/group/groups", body);
     dispatch(addGroups({ groups: data.groups }));
   };
 
@@ -30,9 +27,9 @@ function GroupContainer() {
     fetchGroups();
   }, []);
 
-  const handleSubmit = (values) => {
-    // pass it from props
-    postData("/api/group/create", { ...values, userId: userId });
+  const handleSubmit = async (values) => {
+    let data =  await postData("/api/group/create", { ...values, email: email });
+    dispatch(addGroup({ group: data.group }));
     dispatch(closeModal());
   };
 

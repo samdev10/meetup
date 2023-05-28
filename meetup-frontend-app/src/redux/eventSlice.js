@@ -9,11 +9,14 @@ export const eventSlice = createSlice({
   reducers: {
     addEvents: (state, action) => {
       state.events = action.payload.events;
+    },
+    addEvent: (state, action) => {
+      state.events = [...state.events , action.payload.event];
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addEvents } = eventSlice.actions;
+export const { addEvents, addEvent } = eventSlice.actions;
 
 export default eventSlice.reducer;
